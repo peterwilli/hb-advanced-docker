@@ -1,0 +1,13 @@
+#!/bin/bash
+script_path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+supported_platforms=("linux/amd64" "linux/arm64")
+echo "Emerald Fund Network/.cache/" > "$script_path/../.dockerignore"
+for platform in $supported_platforms
+do
+    IFS='/' read -ra arch_split <<< "$platform"
+    arch="${arch_split[1]}"
+    echo "Building base (dev) image for $platform..."
+    docker buildx build --progress=plain --platform $platform -f "$script_path/HBDocker/Development.Dockerfile" -t advanced_hummingbot_dev_$arch:latest --load "$script_path/HBDocker"
+    echo "Building production image for $platform..."
+    docker buildx build --progress=plain --platform $platform -f "$script_path/HBDocker/Production.Dockerfile" -t advanced_hummingbot_prod_$arch:latest --load --build-arg arch=$arch "$script_path/.."
+done

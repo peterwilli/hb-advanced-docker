@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  advanced_hummingbot:
+    build:
+      context: ./HBDocker
+      dockerfile: Development.Dockerfile
+    command: sleep infinity
+    volumes:
+      - "../hummingbot:/opt/hummingbot"
+      - "./.cache/conda:/opt/conda/pkgs"
+      - "./.cache/conda_envs:/opt/conda/envs"
+      - "./.cache/pip:/root/.cache/pip"
+      - "./.cache/other:/root/.cache/other"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "5m"

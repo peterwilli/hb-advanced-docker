@@ -1,0 +1,9 @@
+#!/bin/bash
+# Here you can do any custom installation you may want!
+# This script will be executed within the hummingbot conda-environment, either at runtime or during Docker build.
+# Therefore, you can build or install pip packages written in Python or otherwise...
+# It'll be available right in the hummingbot environment after build or on the first run.
+# Note that only built pip packages will be cached. For example, you can write a native Python module in Rust
+# and build it here after installing the right depencies, but not install Rust directly to the production system.
+# For this, you need to edit the Docker file for now until we found a cleaner way to do this.
+# Example: pip install my_python_module.tar.gz
