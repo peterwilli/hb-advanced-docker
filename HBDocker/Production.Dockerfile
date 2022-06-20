@@ -7,7 +7,7 @@ RUN ls /opt/hummingbot
 
 # Rebuild without all the cache (Just copy over binary files)
 FROM debian:bullseye-slim
-MAINTAINER Peter Willemsen <peter@codebuffet.co>
+LABEL maintainer="Peter Willemsen <peter@codebuffet.co>"
 COPY --from=build /opt/conda /opt/conda
 COPY --from=build /opt/hummingbot /opt/hummingbot
 COPY --from=build /root/.cache/pip /root/.cache/pip

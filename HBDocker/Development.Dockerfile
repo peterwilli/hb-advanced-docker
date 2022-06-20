@@ -1,5 +1,5 @@
 FROM debian:bullseye-slim
-MAINTAINER Peter Willemsen <peter@codebuffet.co>
+LABEL maintainer="Peter Willemsen <peter@codebuffet.co>"
 RUN echo "Installing dependencies..." && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y libssl-dev git wget curl build-essential && \
