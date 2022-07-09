@@ -1,3 +1,2 @@
-docker-compose.prod.example.yml
 .cache/
 .dockerignore

@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  hb_1:
+    image: advanced_hummingbot_prod_amd64 # or arm64
+    command: python /opt/hummingbot/bin/hummingbot_quickstart.py -f conf_my_strategy.yml -p my_password
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "5m"
+    # hummingbot_quickstart.py needs a tty, the following 2 lines are therefore needed.
+    tty: true
+    stdin_open: true
