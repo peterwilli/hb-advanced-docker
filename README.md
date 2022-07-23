@@ -82,9 +82,9 @@ In the tutorial below I will use `docker save` and `load` which are completely l
 
 # Tested devices
 
-Device | Comments
----|---
-Raspberry Pi 4 [1GB RAM] | Working 100%
-Odroid M1 [8GB RAM] | Working 100%
+Device | Status | Comments
+---|---|---
+Raspberry Pi 4 [1GB RAM] | ✅ | Tested on NixOS
+Odroid M1 [8GB RAM] | ✅ | Tested on SkiffOS and Ubuntu Server
 
 Have you tested your own device? Feel free to submit a PR and add it!
