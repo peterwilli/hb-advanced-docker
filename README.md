@@ -14,7 +14,7 @@ hummingbot | Advanced Docker HB
 ---|---
 Distributes compiled Docker images where you can mount a directory with your config | Lets you build the full image based on your current source directory (can be your fork or the official repo)
 Focuses on production (to edit the source code you need to fork the project and rebuild the Docker image) | Can mount a local hummingbot directory to the Docker image featuring live edits, or compile to a new image with your source and current strategy configuration included
-Ships with the packages hummingbot provides (Conda environment) | You can easily install your own pip packages inside the hummingbot Conda environment. You can also compile from source (this allows one to easily upload, say, Rust modules)
+Ships with the packages hummingbot provides (Conda environment) | You can easily install your own pip packages inside the hummingbot Conda environment. You can also compile from source (this allows one to easily upload, say, Rust modules) (See: [on_install hooks](./HBDocker/on_install/README.md))
 
 ### Other nice things
 - Cache is stored in a hidden folder outside the Docker image. Even if you re-run the development Docker image, the slow process of getting the Python environment ready will be much faster next time.
@@ -29,17 +29,25 @@ For both modes, I assume you have Docker and docker-compose installed.
 These instructions should be executed first, no matter what mode you choose.
 
 - Clone this repo to your device
-- Download the hummingbot source and place it *in the parent directory* of this repo.
+- Download the hummingbot source and place it *in the root directory* of this repo.
+    - This could simply be running `git clone --depth=1 https://github.com/CoinAlpha/hummingbot.git` inside the folder where you cloned this repo (or copying your already cloned source to said folder)
     - It should look like this:
         ```
         .
-        ├── AdvancedDocker-HummingBot
-        └── hummingbot
+        ├── build_production_image
+        ├── docker-compose.dev.yml
+        ├── docker-compose.prod.example.yml
+        ├── docker-compose.prod.yml
+        ├── EFDiscordBot
+        ├── HBDocker
+        ├── hummingbot << I am new!
+        ├── LICENSE
+        └── README.md
         ```
 
 ### Run in development mode
 - Simply `cd` to the directory of this repo and run `docker-compose -f docker-compose.dev.yml up -d --build`
-- After having started it, the Docker container will continue to do some one-time installation, like the hummingbot dependencies (or your own, if you defined any). The reason this happens on runtime and not during creation is so that it's possible to do all of this on your mounted source directory. For production-mode this won't happen.
+- After having started it, the Docker container will do some one-time installation, like the hummingbot dependencies (or your own, if you defined any). The reason this happens on runtime and not during creation is so that it's possible to do all of this on your mounted source directory. For production-mode this won't happen.
 
 ### Run in production mode
 **Note**: Production mode will include **ALL** your configuration including (encrypted) API keys. The purpose of this image is to deploy reliably without machine-dependent bugs. You should never upload this image to a public place like Docker hub.
@@ -67,3 +75,16 @@ In the tutorial below I will use `docker save` and `load` which are completely l
 - You can call `docker-compose -f docker-compose.prod.yml ps` to find your image names, and run `docker attach <name>` to get in the hummingbot panel to control the bot. Use `ctrl+p` followed by `ctrl+q` to get out of it.
 
 - Updating your bot? Simply re-run `build_production_image` and repeat the steps to export, upload and load the Docker image on your destination!
+
+# Configuration
+
+-  [How to install dependencies and custom software?](./HBDocker/on_install/README.md)
+
+# Tested devices
+
+Device | Comments
+---|---
+Raspberry Pi 4 [1GB RAM] | Working 100%
+Odroid M1 [8GB RAM] | Working 100%
+
+Have you tested your own device? Feel free to submit a PR and add it!

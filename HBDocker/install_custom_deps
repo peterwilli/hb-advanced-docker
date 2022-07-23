@@ -1,0 +1,21 @@
+#!/bin/bash
+on_install_folder="/opt/on_install"
+for folder in `ls $on_install_folder | sort -g`; do
+    folder_path="$on_install_folder/$folder"
+    if [[ -d "$folder_path" ]]
+    then
+        cd "$folder_path"
+        echo "1st arg: '$1'"
+        if [ "$1" != "--global-only" ]
+        then
+            if [[ -f "dep_install" ]]
+            then
+                ./dep_install
+            fi
+        fi
+        if [[ -f "global_install" ]]
+        then
+            ./global_install
+        fi
+    fi
+done

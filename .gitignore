@@ -1,2 +1,4 @@
+hummingbot/
 .cache/
 .dockerignore
+docker-compose.prod.yml

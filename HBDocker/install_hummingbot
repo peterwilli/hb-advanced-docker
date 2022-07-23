@@ -2,4 +2,4 @@
 /opt/hummingbot/clean
 /opt/hummingbot/install
 echo "conda activate hummingbot" >> /root/.bashrc
-conda run -n hummingbot /opt/hummingbot/compile
+conda run -n hummingbot bash /opt/hummingbot/compile

@@ -5,10 +5,6 @@ RUN echo "Installing dependencies..." && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y libssl-dev git wget curl build-essential && \
 	rm -rf /var/lib/apt/lists/*
 
-# This is an example, you can use anything you 
-RUN echo "Installing Rust (for compiling native modules)" && \
-    curl https://sh.rustup.rs -sSf | bash -s -- -y --default-toolchain 1.61.0
-
 RUN bash -c 'set -ex && \
     ARCH=`uname -m` && \
     echo "Installing Conda on $ARCH" && \
@@ -25,7 +21,8 @@ RUN bash -c 'set -ex && \
 
 COPY ./start.sh /usr/bin/start.sh
 COPY ./install_hummingbot /usr/bin
-COPY ./custom_installation /usr/bin
+COPY ./install_custom_deps /usr/bin
+COPY ./on_install /opt/on_install
 ENV CONDA_DIR /opt/conda
 ENV PATH="$CONDA_DIR/bin:/root/.cargo/bin:${PATH}"
 WORKDIR /opt/hummingbot

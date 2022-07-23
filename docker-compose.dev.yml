@@ -6,7 +6,7 @@ services:
       dockerfile: Development.Dockerfile
     command: sleep infinity
     volumes:
-      - "../hummingbot:/opt/hummingbot"
+      - "./hummingbot:/opt/hummingbot"
       - "./.cache/conda:/opt/conda/pkgs"
       - "./.cache/conda_envs:/opt/conda/envs"
       - "./.cache/pip:/root/.cache/pip"

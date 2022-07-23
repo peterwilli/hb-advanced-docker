@@ -7,7 +7,7 @@ if [ ! -f "$installed_file" ];
 then
     echo "Doing one-time installation of dependencies"
     install_hummingbot
-    custom_installation
+    install_custom_deps
     touch "$installed_file"
 fi
 exec $@
