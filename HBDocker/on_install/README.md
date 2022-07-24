@@ -18,11 +18,11 @@ Note that there are 2 kinds of installation hooks. You don't have to use both of
 This script will be executed within the hummingbot Conda-environment, either at runtime or during Docker build. Therefore, you can:
 
 - build or install pip packages made available in your strategies
-- install native dependencies (Rust, CLI tools, etc)
+- install dependencies to build the package (Rust, CLI tools, etc)
 
 
 It'll be available right in the hummingbot environment after build or on the first run.
-**Note!** Only finally packages will be included in the Conda environment! Anything you used to build said package (if you build it from source), for example, installing the Rust compiler to build a native Python package written in Rust will be omitted! This is to save space and keep only that what you really need.
+**Note!** Only final packages will be included in the Conda environment! Anything you used to build said package (if you built it from source), for example, installing the Rust compiler to build a native Python package written in Rust will be omitted! This is to save space and keep only that what you really need.
 
 If your command starts with `pip install`, this is likely your best bet!
 
