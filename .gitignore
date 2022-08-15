@@ -1,4 +1,6 @@
 hummingbot/
 .cache/
+data/
 .dockerignore
 docker-compose.prod.yml
+docker-compose.dev.yml

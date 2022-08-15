@@ -46,7 +46,10 @@ These instructions should be executed first, no matter what mode you choose.
         ```
 
 ### Run in development mode
-- Simply `cd` to the directory of this repo and run `docker-compose -f docker-compose.dev.yml up -d --build`
+
+- Simply `cd` to the directory of this repo and rename docker-compose.dev.example.yml to docker-compose.dev.yml.
+- You can add custom containers aside the bot if you wish, like PostgreSQL.
+- Run `docker-compose -f docker-compose.dev.yml up -d --build`
 - After having started it, the Docker container will do some one-time installation, like the hummingbot dependencies (or your own, if you defined any). The reason this happens on runtime and not during creation is so that it's possible to do all of this on your mounted source directory. For production-mode this won't happen.
 
 ### Run in production mode
