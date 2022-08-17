@@ -9,12 +9,12 @@ for folder in `ls $on_install_folder | sort -g`; do
         then
             if [[ -f "dep_install" ]]
             then
-                ./dep_install
+                conda run -n hummingbot ./dep_install
             fi
         fi
         if [[ -f "global_install" ]]
         then
-            ./global_install
+            conda run -n hummingbot ./global_install
         fi
     fi
 done
